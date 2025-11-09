@@ -132,8 +132,8 @@ int main() {
                 }
                 }  
                 else {
-                if(economySeats[s - 21] == 1) {
-                economySeats[s - 21] = 0;
+                if(economySeats[s - 1] == 1) {
+                economySeats[s - 1] = 0;
                 printf("Seat %d cancelled successfully.\n", s);
                 }  
                 else {
@@ -176,4 +176,5 @@ int main() {
     
     return 0;
 }
+
 

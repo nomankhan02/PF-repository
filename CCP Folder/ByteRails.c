@@ -88,3 +88,89 @@ int main() {
                     printf("Invalid seat type.\n");
                     break;
                 }
+ // age-based discount
+                if(age < 12){
+                    price = price*0.5;
+                }
+                else if(age >= 60){
+                    price = price*0.7;
+                }
+                    printf("Seat %d booked successfully!\n", s + 1);
+                    printf("\n+---------------------------------------------+\n");
+                    printf("|            RAILWAY TICKET                   |\n");
+                    printf("+---------------------------------------------+\n");
+                    printf("| Passenger Name   : %-24.24s |\n", name);
+                    printf("| Age              : %-24d |\n", age);
+                    printf("| Seat Type        : %-24s |\n", seatType);
+                    printf("| Seat Number      : %-24d |\n", s + 21);
+                    printf("| Booking Status   : %-24s |\n", "Confirmed");
+                    printf("| Ticket Price     : %-24.2f |\n", price);
+                    printf("|---------------------------------------------|\n");
+                    printf("| Thank you for booking with us               |\n");
+                    printf("+---------------------------------------------+\n");
+
+                    printf("Press Enter to return to the menu...");
+                    fgets(input, sizeof(input), stdin);
+                    break;
+
+            case 2:
+                printf("Enter seat number to cancel (1-100): ");
+                fgets(input, sizeof(input), stdin);
+                if(sscanf(input, "%d", &s) != 1 || s < 1 || s > 100) {
+                    printf("Invalid input. Please enter a number between 1 and 100.\n");
+                    break;
+                }
+                if(s >= 1 && s <= 20) {
+                if(businessSeats[s - 1] == 1) {
+                businessSeats[s - 1] = 0;
+                printf("Seat %d cancelled successfully.\n", s);
+                } 
+                else {
+                printf("Seat %d was not booked.\n", s);
+                }
+                }  
+                else {
+                if(economySeats[s - 21] == 1) {
+                economySeats[s - 21] = 0;
+                printf("Seat %d cancelled successfully.\n", s);
+                }  
+                else {
+                printf("Seat %d was not booked.\n", s);
+                }
+                }
+                break;
+
+            case 3:
+                printf("\nBusiness class seats status:\n");
+                for(i = 0; i < 20; i++) {
+                    if(businessSeats[i] == 1){
+                        printf("Seat %d: Booked\n", i + 1);
+                    }
+                    else{
+                        printf("Seat %d: Empty\n", i + 1);
+                }
+            }
+                printf("\nEconomy Class Seats:\n");
+                for(i = 0; i < 80; i++){
+                    if(economySeats[i] == 1){
+                        printf("Seat %d: Booked\n", i + 21);
+                    }
+                    else{
+                        printf("Seat %d: Empty\n", i + 21);
+                    }
+                }
+                break;
+
+            case 4:
+                printf("Thank you for using the Railway Reservation System.\n");
+                running = 0;
+                break;
+
+            default:
+                printf("Invalid choice. Please select a valid option.\n");
+                break;
+            }
+    }
+    
+    return 0;
+}
